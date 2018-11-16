@@ -20,6 +20,24 @@ Based on the example server in the Apollo Server 2 [Getting Started][] guide.
 [apollo server]: https://www.apollographql.com/docs/apollo-server/
 [getting started]: https://www.apollographql.com/docs/apollo-server/getting-started.html
 
+## Usage
+
+```js
+const { createResolver } = require('apollo-resolver-gcs')
+
+const getBook = createResolver({
+  projectId,
+  bucketName,
+  argsToKey: ({ slug }) => `${slug}.json`,
+})
+
+const resolvers = {
+  Query: {
+    getBook,
+  },
+}
+```
+
 ## Authentication
 
 Follow the [Google Cloud Storage quickstart][quickstart]. In particular, you
