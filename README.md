@@ -42,10 +42,10 @@ setting the `GOOGLE_APPLICATION_CREDENTIALS` access variable.
 
 ```gql
 {
-    getBook(slug: "harry-potter") {
-        title
-        author
-    }
+  getBook(slug: "harry-potter") {
+    title
+    author
+  }
 }
 ```
 
@@ -53,12 +53,12 @@ You should see the result:
 
 ```json
 {
-    "data": {
-        "getBook": {
-            "title": "Harry Potter and the Chamber of Secrets",
-            "author": "J.K. Rowling"
-        }
+  "data": {
+    "getBook": {
+      "title": "Harry Potter and the Chamber of Secrets",
+      "author": "J.K. Rowling"
     }
+  }
 }
 ```
 
