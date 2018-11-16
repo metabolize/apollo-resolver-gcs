@@ -26,8 +26,8 @@ Based on the example server in the Apollo Server 2 [Getting Started][] guide.
 const { createResolver } = require('apollo-resolver-gcs')
 
 const getBook = createResolver({
-  projectId,
-  bucketName,
+  projectId: 'sandbox-123545',
+  bucketName: 'all-my-books',
   argsToKey: ({ slug }) => `${slug}.json`,
 })
 
