@@ -1,0 +1,44 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:10
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run:
+          name: Install dependencies
+          command: npm install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - run:
+          name: Prepare credentials
+          command: |
+            echo $GOOGLE_APPLICATION_CREDENTIALS_JSON > /home/circleci/project/credentials.json
+
+      - run:
+          name: Run tests
+          environment:
+            GOOGLE_APPLICATION_CREDENTIALS: /home/circleci/project/credentials.json
+          command: npm run mocha
+
+      - run:
+          name: Check lint
+          command: npm run lint
+          when: always
+
+      - run:
+          name: Check prettier
+          command: npm run prettier
+          when: always
