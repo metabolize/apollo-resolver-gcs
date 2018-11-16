@@ -12,16 +12,25 @@
     "load-server-fixtures": "node example/load-server-fixtures",
     "start": "node example/server"
   },
-  "keywords": ["apollo", "apollo-server", "google-cloud-storage", "google-cloud", "gcs"],
+  "keywords": [
+    "apollo",
+    "apollo-server",
+    "google-cloud-storage",
+    "google-cloud",
+    "gcs"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
     "@google-cloud/storage": "^2.3.1",
-    "apollo-server": "^2.2.2",
     "dotenv": "^6.1.0",
     "graphql": "^14.0.2"
   },
+  "peerDependencies": {
+    "apollo-server": "2.x"
+  },
   "devDependencies": {
+    "apollo-server": "^2.2.2",
     "eslint": "^5.9.0",
     "eslint-config-prettier": "^3.3.0",
     "eslint-config-standard": "^12.0.0",
