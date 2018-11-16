@@ -25,12 +25,12 @@ jobs:
       - run:
           name: Prepare credentials
           command: |
-            echo "$GOOGLE_APPLICATION_CREDENTIALS_JSON" > credentials.json
+            echo "$GOOGLE_APPLICATION_CREDENTIALS_JSON" > /home/circleci/project/credentials.json
 
       - run:
           name: Run tests
           environment:
-            GOOGLE_APPLICATION_CREDENTIALS: credentials.json
+            GOOGLE_APPLICATION_CREDENTIALS: /home/circleci/project/credentials.json
           command: npm run mocha
 
       - run:
