@@ -7,6 +7,7 @@ function isErrorReason(e, reason) {
     throw Error(`
       This is not an API error response. It may be an HTTP response. In that
       case you should inspect its \`code\` property.
+      ${e}
     `)
   }
 }
