@@ -22,6 +22,9 @@ Based on the example server in the Apollo Server 2 [Getting Started][] guide.
 
 ## Usage
 
+In this example, `getBook(slug: "harry-potter")` returns the deserialized
+contents of `gcs://all-my-books/harry-potter.json`.
+
 ```js
 const { ApolloServer } = require('apollo-server')
 const { createResolver } = require('apollo-resolver-gcs')
