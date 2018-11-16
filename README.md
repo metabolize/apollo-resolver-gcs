@@ -20,6 +20,34 @@ Based on the example server in the Apollo Server 2 [Getting Started][] guide.
 [apollo server]: https://www.apollographql.com/docs/apollo-server/
 [getting started]: https://www.apollographql.com/docs/apollo-server/getting-started.html
 
+## Usage
+
+```js
+const { ApolloServer } = require('apollo-server')
+const { createResolver } = require('apollo-resolver-gcs')
+
+const typeDefs = ...
+
+const getBook = createResolver({
+  projectId: 'sandbox-123545',
+  bucketName: 'all-my-books',
+  argsToKey: ({ slug }) => `${slug}.json`,
+})
+
+const resolvers = {
+  Query: {
+    getBook,
+  },
+}
+
+const server = new ApolloServer({ typeDefs, resolvers })
+
+await server.listen()
+```
+
+In this example, `getBook(slug: "harry-potter")` returns the deserialized
+contents of `gcs://all-my-books/harry-potter.json`.
+
 ## Authentication
 
 Follow the [Google Cloud Storage quickstart][quickstart]. In particular, you
