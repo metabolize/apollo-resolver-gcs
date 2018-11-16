@@ -23,7 +23,10 @@ Based on the example server in the Apollo Server 2 [Getting Started][] guide.
 ## Usage
 
 ```js
+const { ApolloServer } = require('apollo-server')
 const { createResolver } = require('apollo-resolver-gcs')
+
+const typeDefs = ...
 
 const getBook = createResolver({
   projectId: 'sandbox-123545',
@@ -36,6 +39,10 @@ const resolvers = {
     getBook,
   },
 }
+
+const server = new ApolloServer({ typeDefs, resolvers })
+
+await server.listen()
 ```
 
 ## Authentication
