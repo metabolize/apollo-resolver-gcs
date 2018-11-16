@@ -25,7 +25,7 @@ jobs:
       - run:
           name: Prepare credentials
           command: |
-            echo "$GOOGLE_APPLICATION_CREDENTIALS_JSON" > /home/circleci/project/credentials.json
+            echo $GOOGLE_APPLICATION_CREDENTIALS_JSON > /home/circleci/project/credentials.json
 
       - run:
           name: Run tests
