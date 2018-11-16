@@ -1,5 +1,14 @@
 # apollo-resolver-gcs
 
+[![version](https://img.shields.io/npm/v/apollo-resolver-gcs.svg?style=flat-square)][npm]
+[![license](https://img.shields.io/npm/l/apollo-resolver-gcs.svg?style=flat-square)][npm]
+[![build](https://img.shields.io/circleci/project/github/metabolize/apollo-resolver-gcs.svg?style=flat-square)][build]
+[![code style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)][prettier]
+
+[npm]: https://npmjs.comapollo-resolver-gcs/
+[build]: https://circleci.com/gh/metabolize/apollo-resolver-gcs/tree/master
+[prettier]: https://prettier.io/
+
 A resolver function for [Apollo Server][] which loads serialized data from
 Google Cloud Storage.
 
