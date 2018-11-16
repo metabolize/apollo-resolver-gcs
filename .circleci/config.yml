@@ -23,7 +23,14 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - run:
+          name: Prepare credentials
+          command: |
+            echo "$GOOGLE_APPLICATION_CREDENTIALS_JSON" > credentials.json
+
+      - run:
           name: Run tests
+          environment:
+            GOOGLE_APPLICATION_CREDENTIALS: credentials.json
           command: npm run jest
 
       - run:
