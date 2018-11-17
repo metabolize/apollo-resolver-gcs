@@ -12,6 +12,11 @@
     "load-server-fixtures": "node example/load-server-fixtures",
     "start": "node example/server"
   },
+  "files": [
+    "**/*.js",
+    "!**.test.js",
+    "example.env"
+  ],
   "keywords": [
     "apollo",
     "apollo-server",

@@ -1,5 +1,0 @@
-.env
-.eslintrc.yml
-.prettierignore
-.prettierrc.yml
-*.test.js
