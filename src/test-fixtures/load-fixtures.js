@@ -1,7 +1,9 @@
 'use strict'
 
 const { Storage } = require('@google-cloud/storage')
-const { isErrorReason } = require('./gcs-errors')
+const { isErrorReason } = require('../gcs-errors')
+
+const argsToKey = ({ slug }) => `${slug}.json`
 
 async function createBucketIfNotExists({ projectId, bucketName, location }) {
   const storage = new Storage({ projectId })
@@ -17,12 +19,7 @@ async function createBucketIfNotExists({ projectId, bucketName, location }) {
   }
 }
 
-async function loadFixturesIntoBucket({
-  projectId,
-  bucketName,
-  fixtures,
-  argsToKey,
-}) {
+async function loadFixturesIntoBucket({ projectId, bucketName, fixtures }) {
   const bucket = new Storage({ projectId }).bucket(bucketName)
 
   for (const item of fixtures) {
@@ -40,18 +37,13 @@ async function loadFixturesIntoBucket({
   }
 }
 
-async function loadFixtures({
-  projectId,
-  bucketName,
-  location,
-  fixtures,
-  argsToKey,
-}) {
+async function loadFixtures({ projectId, bucketName, location, fixtures }) {
   await createBucketIfNotExists({ projectId, bucketName, location })
-  await loadFixturesIntoBucket({ projectId, bucketName, fixtures, argsToKey })
+  await loadFixturesIntoBucket({ projectId, bucketName, fixtures })
 }
 
 module.exports = {
+  argsToKey,
   createBucketIfNotExists,
   loadFixturesIntoBucket,
   loadFixtures,
