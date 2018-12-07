@@ -2,20 +2,16 @@
 
 const chai = require('chai')
 const { UserInputError } = require('apollo-server')
+const fixtures = require('./test-fixtures/fixtures')
+const { argsToKey } = require('./test-fixtures/defs')
 const { createResolver } = require('./gcs-resolver')
-const { projectId, bucketName, location } = require('./test-config')
-const { loadFixtures } = require('./gcs-test-helpers')
-const fixtures = require('./test-fixtures')
+const { projectId, bucketName } = require('./test-config')
 
 const { expect } = chai
 chai.use(require('chai-as-promised'))
 
-const argsToKey = ({ slug }) => `${slug}.json`
-
-before(async function() {
-  this.timeout(10000)
-  await loadFixtures({ projectId, bucketName, location, fixtures, argsToKey })
-})
+// Ensure the fixture-loading hooks are registered first.
+require('./test-fixtures/load-fixture-hooks.test')
 
 const resolver = createResolver({
   projectId,
@@ -40,7 +36,7 @@ context('When an item does not exist', function() {
   it('The expected error is returned', async function() {
     this.timeout(10000)
 
-    expect(
+    await expect(
       resolver(
         undefined,
         { slug: 'this-one-does-not-exist' },
