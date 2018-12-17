@@ -1,11 +1,11 @@
 {
   "name": "apollo-resolver-gcs",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A resolver function for Apollo Server which loads serialized data from Google Cloud Storage",
   "main": "src/gcs-resolver.js",
   "scripts": {
-    "prettier": "prettier --write \"**/*.js\" \"**/*.md\"",
-    "prettier-check": "prettier-check \"**/*.js\" \"**/*.md\"",
+    "prettier": "prettier --write \"**/*.@(js|md|yml|json)\"",
+    "prettier-check": "prettier-check \"**/*.@(js|md|yml|json)\"",
     "lint": "eslint \"**/*.js\"",
     "mocha": "mocha src",
     "test": "run-p mocha lint prettier-check",
