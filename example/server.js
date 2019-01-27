@@ -6,9 +6,9 @@ const { projectId, bucketName } = require('./server-config')
 
 const typeDefs = gql`
   type Book {
-    slug: String
-    title: String
-    author: String
+    slug: String!
+    title: String!
+    author: String!
   }
 
   type Query {
