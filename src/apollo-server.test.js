@@ -49,7 +49,6 @@ async function requestBook(slug) {
 
 context('When an item exists', function() {
   it('The client can fetch it from the server', async function() {
-    // return
     this.timeout(5000)
 
     const [item] = fixtures
