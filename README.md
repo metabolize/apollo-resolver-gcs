@@ -15,9 +15,12 @@ Google Cloud Storage.
 This is intended for loading static data backed by S3 but may be useful for
 other functions as well.
 
+There is a companion library [apollo-resolver-fs][] suitable for local testing.
+
 Based on the example server in the Apollo Server 2 [Getting Started][] guide.
 
 [apollo server]: https://www.apollographql.com/docs/apollo-server/
+[apollo-resolver-fs]: https://github.com/metabolize/apollo-resolver-fs
 [getting started]: https://www.apollographql.com/docs/apollo-server/getting-started.html
 
 ## Usage
