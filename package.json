@@ -27,7 +27,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@google-cloud/storage": "^2.3.1",
+    "@google-cloud/storage": "^3.0.4",
     "graphql": "^14.0.2"
   },
   "peerDependencies": {
