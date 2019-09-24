@@ -1,7 +1,7 @@
 'use strict'
 
-const { loadFixtures } = require('../src/gcs-test-helpers')
-const fixtures = require('../src/test-fixtures')
+const { loadFixtures } = require('../src/test-fixtures/load-fixtures')
+const fixtures = require('../src/test-fixtures/fixtures')
 const { projectId, bucketName, location } = require('./server-config')
 
 ;(async () => {
