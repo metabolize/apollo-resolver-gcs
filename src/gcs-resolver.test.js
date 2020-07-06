@@ -16,8 +16,8 @@ const resolver = createResolver({
   argsToKey,
 })
 
-context('When an item exists', function() {
-  it('The resolver can fetch it from GCS', async function() {
+context('When an item exists', function () {
+  it('The resolver can fetch it from GCS', async function () {
     this.timeout(5000)
 
     const [item] = fixtures
@@ -29,8 +29,8 @@ context('When an item exists', function() {
   })
 })
 
-context('When an item does not exist', function() {
-  it('The expected error is returned', async function() {
+context('When an item does not exist', function () {
+  it('The expected error is returned', async function () {
     this.timeout(10000)
 
     await expect(
