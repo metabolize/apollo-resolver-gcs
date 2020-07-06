@@ -13,7 +13,7 @@ require('./test-fixtures/load-fixture-hooks.test')
 
 let server
 let url
-before(async function() {
+before(async function () {
   const getBook = createResolver({
     projectId,
     bucketName,
@@ -24,7 +24,7 @@ before(async function() {
   ;({ url } = await server.listen())
 })
 
-after(async function() {
+after(async function () {
   if (server) {
     server.stop()
     server = undefined
@@ -46,8 +46,8 @@ async function requestBook(slug) {
   )
 }
 
-context('When an item exists', function() {
-  it('The client can fetch it from the server', async function() {
+context('When an item exists', function () {
+  it('The client can fetch it from the server', async function () {
     this.timeout(5000)
 
     const [item] = fixtures
@@ -61,8 +61,8 @@ context('When an item exists', function() {
   })
 })
 
-context('When an item does not exist', function() {
-  it('The expected error is returned', async function() {
+context('When an item does not exist', function () {
+  it('The expected error is returned', async function () {
     this.timeout(10000)
 
     await expect(requestBook('this-one-does-not-exist')).to.be.rejectedWith(
