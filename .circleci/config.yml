@@ -1,26 +1,15 @@
 version: 2
 jobs:
-  build:
+  main:
     docker:
       - image: circleci/node:10
 
     steps:
       - checkout
 
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package-lock.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
       - run:
           name: Install dependencies
           command: npm ci
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package-lock.json" }}
 
       - run:
           name: Prepare credentials
@@ -33,12 +22,57 @@ jobs:
             GOOGLE_APPLICATION_CREDENTIALS: /home/circleci/project/credentials.json
           command: npm run mocha
 
+  lint:
+    docker:
+      - image: circleci/node:10
+
+    steps:
+      - checkout
+
+      - run:
+          name: Install dependencies
+          command: npm ci
+
       - run:
           name: Check lint
           command: npm run lint
-          when: always
+
+  format:
+    docker:
+      - image: circleci/node:10
+
+    steps:
+      - checkout
+
+      - run:
+          name: Install dependencies
+          command: npm ci
+
+      - run:
+          name: Check lint
+          command: npm run lint
 
       - run:
           name: Check prettier
           command: npm run prettier
-          when: always
+
+workflows:
+  version: 2
+
+  on-commit:
+    jobs:
+      - main
+      - lint
+      - format
+
+  daily:
+    triggers:
+      - schedule:
+          cron: '0 17 * * *'
+          filters:
+            branches:
+              only: master
+    jobs:
+      - main
+      - lint
+      - format
