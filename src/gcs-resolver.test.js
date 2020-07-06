@@ -1,14 +1,11 @@
 'use strict'
 
-const chai = require('chai')
+const { expect } = require('chai')
 const { UserInputError } = require('apollo-server')
 const fixtures = require('./test-fixtures/fixtures')
 const { argsToKey } = require('./test-fixtures/defs')
 const { createResolver } = require('./gcs-resolver')
 const { projectId, bucketName } = require('./test-config')
-
-const { expect } = chai
-chai.use(require('chai-as-promised'))
 
 // Ensure the fixture-loading hooks are registered first.
 require('./test-fixtures/load-fixture-hooks.test')
