@@ -1,15 +1,12 @@
 'use strict'
 
-const chai = require('chai')
+const { expect } = require('chai')
 const { ApolloServer } = require('apollo-server')
 const { request } = require('graphql-request')
 const fixtures = require('./test-fixtures/fixtures')
 const { argsToKey, typeDefs } = require('./test-fixtures/defs')
 const { projectId, bucketName } = require('./test-config')
 const { createResolver } = require('./gcs-resolver')
-
-const { expect } = chai
-chai.use(require('chai-as-promised'))
 
 // Ensure the fixture-loading hooks are registered first.
 require('./test-fixtures/load-fixture-hooks.test')
@@ -28,8 +25,10 @@ before(async function() {
 })
 
 after(async function() {
-  server.stop()
-  server = undefined
+  if (server) {
+    server.stop()
+    server = undefined
+  }
 })
 
 async function requestBook(slug) {
